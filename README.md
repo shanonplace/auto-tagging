@@ -17,4 +17,4 @@
 
 ### Note: I know the code shouldn't be putting everthing in the controller, this was just for educational purposes :)
 
-![Image](../main/C.H.%20Robinson%20-%20Auto-Tagging%20Entries%20with%20Webhooks.pdf?raw=true)
+![Overview Flow](../main/C.H.%20Robinson%20-%20Auto-Tagging%20Entries%20with%20Webhooks.pdf?raw=true)

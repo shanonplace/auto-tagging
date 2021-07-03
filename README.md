@@ -10,7 +10,7 @@
 
 # Installation
 
-`npm install`
+Just clone the repo and then execute `npm install` in the folder
 
 # Run
 `npm start`

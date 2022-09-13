@@ -1,48 +1,48 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-const contentful = require('contentful-management');
-const config = require('../config');
-
+const contentful = require("contentful-management");
+const config = require("../config");
 
 //hooks - index level GET test
-router.get('/', function(req, res, next) {
-  res.send('hello from the GET route to /hooks');
+router.get("/", function (req, res, next) {
+  res.send("hello from the GET route to /hooks");
 });
 
 //hooks/auto-tag POST
-router.post('/auto-tag', function (req, res) {
-
+router.post("/auto-tag", function (req, res) {
   //grab the entryId from the request
-  const entryId = req.body.entryid;
+  const entryId = req.body.sys.id;
 
-  console.log(`'request is ${JSON.stringify(req.body)}`);
+  //console.log(`'request is ${JSON.stringify(req.body.sys)}`);
 
   //Create the contentful client
   const client = contentful.createClient({
-    accessToken: config.contentful.CMAKey
+    accessToken: config.contentful.CMAKey,
   });
 
   //get the entry for this Id, add a tag to it, and update the entry
-  client.getSpace(config.contentful.spaceId)
+  client
+    .getSpace(config.contentful.spaceId)
     .then((space) => space.getEnvironment(config.contentful.environment))
     .then((environment) => environment.getEntry(entryId))
     .then((entry) => {
-      console.log(`got entry ${entry.sys.id}`);
+      //console.log(`got entry ${entry.sys.id}`);
       const myTag = {
         sys: {
-          type: 'Link',
-          linkType: 'Tag',
-          id: config.contentful.tagName
-        }
-      }
-      entry.metadata.tags.push(myTag)
-      
-      console.log(`tagged entry ${entryId} with tag ${config.contentful.tagName}`);
-      
-      return entry.update()
+          type: "Link",
+          linkType: "Tag",
+          id: config.contentful.tagName,
+        },
+      };
+      entry.metadata.tags.push(myTag);
+
+      console.log(
+        `tagged entry ${entryId} with tag ${config.contentful.tagName}`
+      );
+
+      return entry.update();
     })
     .catch(console.error);
-
 
   res.send(`Added tag to ${entryId}.`);
 });

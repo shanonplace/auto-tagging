@@ -1,6 +1,6 @@
 const config = {
   contentful: {
-    tagName: "siteSketchUp",
+    tagName: "SomeTagName",
     spaceId: "your-space-id",
     environment: "master",
     CMAKey: "your-content-management-api-key",

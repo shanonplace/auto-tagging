@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const contentful = require("contentful-management");
-const config = require("../config");
+const config = require("../config"); //or .env file
 
 //hooks - index level GET test
 router.get("/", function (req, res, next) {
@@ -12,8 +12,6 @@ router.get("/", function (req, res, next) {
 router.post("/auto-tag", function (req, res) {
   //grab the entryId from the request
   const entryId = req.body.sys.id;
-
-  //console.log(`'request is ${JSON.stringify(req.body.sys)}`);
 
   //Create the contentful client
   const client = contentful.createClient({
@@ -26,7 +24,6 @@ router.post("/auto-tag", function (req, res) {
     .then((space) => space.getEnvironment(config.contentful.environment))
     .then((environment) => environment.getEntry(entryId))
     .then((entry) => {
-      //console.log(`got entry ${entry.sys.id}`);
       const myTag = {
         sys: {
           type: "Link",

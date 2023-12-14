@@ -8,10 +8,11 @@
   },
   "dependencies": {
     "body-parser": "^1.18.3",
-    "contentful-management": "^7.25.1",
+    "contentful-management": "^11.6.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
-    "express": "~4.16.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.7"
   }
